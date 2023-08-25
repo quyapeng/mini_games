@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css particle</title>
+    <style>
+    
+
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/css-doodle@0.35.0/css-doodle.min.js"></script>
+    <css-doodle grid="30">
+        :doodle {
+            width: 100vw; height: 100vh;
+        }
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgb(@r(255), @r(255), @r(255));
+        --time: @r(8s);
+        --time2: @r(8s);
+        --delay1: calc(@index * -0.02s);
+        --delay2: calc(@index * -0.02s);
+        animation: 
+                horizontal var(--time) infinite calc(var(--delay1) * -1) linear alternate,
+                vertical var(--time2) infinite calc(var(--delay2) * -1) linear alternate,
+                colorX calc(var(--time) * 10) infinite calc(var(--delay1) * -1) steps(10),
+                colorY calc(var(--time2) * 7) infinite calc(var(--delay2) * -1) steps(7);
+        animation-composition: accumulate;
+        @keyframes horizontal {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw - 100%)); }
+        }
+        @keyframes vertical {
+            from { transform: translateY(0); }
+            to { transform: translateY(calc(100vh - 100%)); }
+        }
+        @keyframes colorX {
+            to {
+                filter: hue-rotate(2185deg);
+            }
+        }
+        @keyframes colorY {
+            to {
+                filter: hue-rotate(1769deg);
+            }
+        }
+    
+    </css-doodle>
+</body>
+</html>
